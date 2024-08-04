@@ -1,0 +1,607 @@
+<!DOCTYPE html><html lang="ru"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Визитная карточка Wenci. Программирование на Python, Lua, CSS, HTML и JavaScript. Разработка Discord-ботов.">
+    <meta name="keywords" content="визитка, Wenci, программирование, Python, Lua, CSS, HTML, JavaScript, Discord-боты">
+    <meta name="author" content="Wenci">
+    <title>Визитная Карточка | Wenci</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0d1117;
+            --bg-dark-alt: #161b22;
+            --text-light: #c9d1d9;
+            --highlight-python: #3572A5;
+            --highlight-lua: #000080;
+            --highlight-css: #264de4;
+            --highlight-html: #e34c26;
+            --highlight-js: #f0db4f;
+            --shadow-light: rgba(0, 0, 0, 0.3);
+            --shadow-dark: rgba(0, 0, 0, 0.7);
+            --primary-color: #58a6ff;
+            --secondary-color: #7ee787;
+            --tertiary-color: #f85149;
+            --text-light-hover: rgba(255, 255, 255, 0.8);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            background: var(--bg-dark);
+            position: relative;
+        }
+
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            font-size: 16px;
+            color: rgba(100, 200, 100, 0.5);
+            white-space: pre;
+            overflow: hidden;
+            animation: codeScroll 30s linear infinite;
+            padding: 20px;
+            opacity: 0.6;
+            background: var(--bg-dark);
+            background-attachment: fixed;
+        }
+
+        @keyframes codeScroll {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100%); }
+        }
+
+        .card {
+            background: rgba(30, 34, 39, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px var(--shadow-dark);
+            width: 800px;
+            padding: 30px;
+            color: var(--text-light);
+            border: 1px solid #444;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeIn 0.5s ease-out forwards, cardFloat 3s ease-in-out infinite;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .card:hover {
+            box-shadow: 0 20px 40px var(--shadow-dark);
+            transform: scale(1.05);
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid #444;
+            object-fit: cover;
+            box-shadow: 0 8px 24px var(--shadow-dark);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.15);
+            box-shadow: 0 12px 32px var(--shadow-dark);
+        }
+
+        .card-content {
+            flex: 1;
+            margin-left: 20px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 30px;
+            color: var(--primary-color);
+            text-shadow: 0 1px 5px rgba(255, 255, 255, 0.3);
+            animation: textGlow 2s infinite alternate;
+        }
+
+        @keyframes textGlow {
+            from { text-shadow: 0 0 10px var(--primary-color); }
+            to { text-shadow: 0 0 25px var(--primary-color); }
+        }
+
+        h1::after {
+            content: '';
+            display: block;
+            width: 60%;
+            height: 2px;
+            background: var(--secondary-color);
+            margin-top: 10px;
+            opacity: 0.8;
+            border-radius: 5px;
+        }
+
+        p {
+            margin: 20px 0;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #b0b0b0;
+        }
+
+        .skills {
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        .skill {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: var(--text-light-hover);
+        }
+
+        .skill-bar {
+            width: 100%;
+            background: #444;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-left: 15px;
+            height: 10px;
+        }
+
+        .skill-level {
+            height: 100%;
+        }
+
+        .python .skill-level {
+            width: 80%;
+            background: var(--highlight-python);
+        }
+
+        .lua .skill-level {
+            width: 85%;
+            background: var(--highlight-lua);
+        }
+
+        .css .skill-level {
+            width: 60%;
+            background: var(--highlight-css);
+        }
+
+        .html .skill-level {
+            width: 70%;
+            background: var(--highlight-html);
+        }
+
+        .javascript .skill-level {
+            width: 80%;
+            background: var(--highlight-js);
+        }
+
+        .social-icons {
+            margin-top: 20px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: none;
+            box-shadow: 0 4px 8px var(--shadow-light);
+            transition: transform 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.2);
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .social-icons img {
+            width: 28px;
+            height: 28px;
+            transition: filter 0.3s ease;
+        }
+
+        .social-icons a:hover img {
+            filter: brightness(1.5);
+        }
+
+        @media (max-width: 768px) {
+            .card {
+                flex-direction: column;
+                width: 90%;
+                padding: 20px;
+                align-items: center;
+            }
+            .profile-img {
+                width: 100px;
+                height: 100px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            p {
+                font-size: 14px;
+            }
+            .social-icons a {
+                width: 40px;
+                height: 40px;
+            }
+            .social-icons img {
+                width: 24px;
+                height: 24px;
+            }
+        }
+
+        
+        .libraries-button {
+            background: var(--secondary-color);
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px var(--shadow-dark);
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .libraries-button:hover {
+            background: var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            overflow: auto;
+        }
+
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #1c1c1c;
+            border-radius: 10px;
+            padding: 20px;
+            width: 90%;
+            max-width: 600px; 
+            max-height: 80vh; 
+            color: var(--text-light);
+            box-shadow: 0 10px 30px var(--shadow-dark);
+            position: relative;
+            overflow: auto; 
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        .modal-content .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 24px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+
+        .modal-content .close-button:hover {
+            color: var(--tertiary-color);
+        }
+        .category {
+            margin-bottom: 20px;
+        }
+
+        .category h3 {
+            margin-bottom: 10px;
+            color: var(--highlight-python);
+        }
+
+        .category ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .category ul li {
+            margin-bottom: 5px;
+        }
+        
+        .menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .menu-button {
+            background: var(--primary-color);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px var(--shadow-dark);
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .menu-button:hover {
+            background: var(--secondary-color);
+            transform: scale(1.1);
+        }
+
+        .menu-content {
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background: rgba(30, 34, 39, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 10px 30px var(--shadow-dark);
+            width: 200px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .menu-content.active {
+            max-height: 300px;
+            opacity: 1;
+        }
+
+        .menu-content a {
+            display: block;
+            padding: 10px 20px;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .menu-content a:hover {
+            background: var(--secondary-color);
+        }
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div id="loader" class="loader">
+        <iframe src="loader.html" style="border: none; width: 100%; height: 100%;"></iframe>
+    </div>
+
+    <div class="background">
+        <span>console.log('Welcome to Wenci\'s profile');</span><br>
+        <span>let crack = function(algorithm) {</span><br>
+        <span>&nbsp;&nbsp;return algorithm + ' cracked!';</span><br>
+        <span>};</span><br>
+        <span>console.log(crack('Encryption'));</span><br>
+        <br>
+        <span>// More lines of code...</span><br>
+        <span>let exploit = 'Access Granted';</span><br>
+        <span>console.log(exploit);</span><br>
+        <br>
+        <span>if (hackSuccess) {</span><br>
+        <span>&nbsp;&nbsp;console.log('Accessing system...');</span><br>
+        <span>}</span><br>
+        <br>
+        <span>// End of code</span><br>
+    </div>
+
+    <div class="card">
+        <img src="images/14a23cc96606174743858411d1e55607.jpg" alt="Профильное изображение Wenci" class="profile-img">
+        <div class="card-content">
+            <h1>Wenci[BETA]</h1>
+            <p>&gt;Привет! Я Wenci, я занимаюсь программированием на Python, Lua, CSS, HTML и JavaScript. Также разрабатываю Discord-Telegram-ботов</p>
+            <div class="skills">
+                <div class="skill python">
+                    <span>Python</span>
+                    <div class="skill-bar">
+                        <div class="skill-level"></div>
+                    </div>
+                </div>
+                <div class="skill lua">
+                    <span>Lua</span>
+                    <div class="skill-bar">
+                        <div class="skill-level"></div>
+                    </div>
+                </div>
+                <div class="skill css">
+                    <span>CSS</span>
+                    <div class="skill-bar">
+                        <div class="skill-level"></div>
+                    </div>
+                </div>
+                <div class="skill html">
+                    <span>HTML</span>
+                    <div class="skill-bar">
+                        <div class="skill-level"></div>
+                    </div>
+                </div>
+                <div class="skill javascript">
+                    <span>JavaScript</span>
+                    <div class="skill-bar">
+                        <div class="skill-level"></div>
+                    </div>
+                </div>
+            </div>
+            <button class="libraries-button" id="librariesButton">Библиотеки</button>
+            <div class="social-icons">
+                <a href="https://github.com/Wencix" target="_blank" title="GitHub">
+                    <img src="images/github.png" alt="GitHub">
+                </a>
+                <a href="https://discord.com/users/yourprofile" target="_blank" title="Discord">
+                    <img src="images/discord-logo.png" alt="Discord">
+                </a>
+                <a href="https://t.me/Wencix" target="_blank" title="Telegram">
+                    <img src="images/telegram-app.png" alt="Telegram">
+                </a>
+                <a href="https://open.spotify.com/playlist/4w4fcYqHT0UeCVnKwkixND?si=ffcec70f364841f5" target="_blank" title="Spotify">
+                    <img src="images/spotify.png" alt="Spotify">
+                </a>
+                <a href="https://www.instagram.com/wn_wenci/" target="_blank" title="Instagram">
+                    <img src="images/instagram-new.png" alt="Instagram">
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="menu">
+        <button class="menu-button" id="menuToggle">☰</button>
+        <div class="menu-content" id="menuContent">
+            <a href="index.html">Профиль</a>
+            <a href="about.html">Обо мне</a>
+            <a href="donate.html">Донат</a>
+        </div>
+    </div>
+    <div class="modal" id="modalLibraries">
+        <div class="modal-content">
+            <button class="close-button" id="closeButton">×</button>
+            <h2>Используемые библиотеки</h2>
+            <p>Вот список библиотек и технологий, которые я использую в своей работе:</p>
+            
+            <div class="category">
+                <h3>Python</h3>
+                <ul>
+                    <li><strong>discord.py</strong>: Библиотека для создания ботов в Discord.</li>
+                    <li><strong>Pyrogram</strong>: Библиотека для создания ботов в Telegram.</li>
+                    <li><strong>TensorFlow</strong>: Библиотека для машинного обучения и нейросетей.</li>
+                    <li><strong>Keras</strong>: Высокоуровневая API для работы с нейросетями, построенная на TensorFlow.</li>
+                    <li><strong>PyTorch</strong>: Библиотека для машинного обучения и нейросетей.</li>
+                    <li><strong>Scikit-Learn</strong>: Библиотека для машинного обучения и анализа данных.</li>
+                    <li><strong>NumPy</strong>: Основная библиотека для численных вычислений.</li>
+                    <li><strong>Pandas</strong>: Библиотека для работы с данными и аналитики.</li>
+                    <li><strong>BeautifulSoup</strong>: Библиотека для парсинга HTML и XML.</li>
+                    <li><strong>Requests</strong>: Библиотека для отправки HTTP-запросов.</li>
+                </ul>
+            </div>
+
+            <div class="category">
+                <h3>JavaScript</h3>
+                <ul>
+                    <li><strong>discord.js</strong>: Библиотека для создания ботов в Discord.</li>
+                    <li><strong>Express.js</strong>: Фреймворк для создания веб-приложений.</li>
+                    <li><strong>Axios</strong>: Библиотека для отправки HTTP-запросов.</li>
+                    <li><strong>React</strong>: Библиотека для построения пользовательских интерфейсов.</li>
+                    <li><strong>Node.js</strong>: Среда выполнения JavaScript на сервере.</li>
+                    <li><strong>telegraf.js</strong>: Библиотека для создания ботов в Telegram.</li>
+                </ul>
+            </div>
+
+            <div class="category">
+                <h3>Lua</h3>
+                <ul>
+                    <li><strong>Löve</strong>: Фреймворк для создания игр на Lua.</li>
+                    <li><strong>Luasocket</strong>: Библиотека для сетевого программирования.</li>
+                </ul>
+            </div>
+
+            <div class="category">
+                <h3>CSS</h3>
+                <ul>
+                    <li><strong>Bootstrap</strong>: Популярный фреймворк для быстрой разработки адаптивных и мобильных веб-сайтов.</li>
+                    <li><strong>Tailwind CSS</strong>: Утилитарный CSS-фреймворк для быстрой и масштабируемой разработки пользовательских интерфейсов.</li>
+                </ul>
+            </div>
+
+            <div class="category">
+                <h3>HTML</h3>
+                <ul>
+                    <li><strong>HTML5</strong>: Последняя версия HTML5, которая поддерживает новые теги и API для создания современных веб-приложений.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuToggle = document.getElementById('menuToggle');
+        const menuContent = document.getElementById('menuContent');
+        const librariesButton = document.getElementById('librariesButton');
+        const modalLibraries = document.getElementById('modalLibraries');
+        const closeButton = document.getElementById('closeButton');
+        const loader = document.getElementById('loader');
+
+
+        menuToggle.addEventListener('click', () => {
+            menuContent.classList.toggle('active');
+        });
+
+        librariesButton.addEventListener('click', () => {
+            modalLibraries.classList.add('active');
+        });
+        window.addEventListener('load', () => {
+            loader.classList.add('hidden');
+            setTimeout(() => loader.remove(), 300);
+        });
+
+        closeButton.addEventListener('click', () => {
+            modalLibraries.classList.remove('active');
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target === modalLibraries) {
+                modalLibraries.classList.remove('active');
+            }
+        });
+    });
+</script>
+
+<!-- Cloudflare Pages Analytics --><script defer="" src="js/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;d9a36329fa564c2996afdd550f3f3768&quot;}"></script><!-- Cloudflare Pages Analytics -->
+
+</body></html>

@@ -1,0 +1,400 @@
+<!DOCTYPE html><html lang="ru"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Контактная информация Wenci. Способы оплаты и поддержка.">
+    <meta name="keywords" content="Wenci, контакт, оплата, криптовалюты, PayPal">
+    <meta name="author" content="Wenci">
+    <title>Контакты | Wenci[BETA]</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/all.min.css">
+    <style>
+        :root {
+            --bg-gradient-start: #0d1117;
+            --bg-gradient-end: #161b22;
+            --text-light: #e1e4e8;
+            --primary-color: #58a6ff;
+            --secondary-color: #7ee787;
+            --shadow-dark: rgba(0, 0, 0, 0.8);
+            --card-bg: rgba(45, 49, 54, 0.9);
+            --card-hover-bg: rgba(45, 49, 54, 0.95);
+            --details-bg: rgba(0, 0, 0, 0.9);
+            --notification-bg: #2d333b;
+            --notification-text: #f1f1f1;
+            --transition-speed: 0.3s;
+            --scale-up: 1.1;
+            --scale-down: 0.95;
+            --border-radius: 15px;
+            --cursor-color: #58a6ff;
+            --theme-light-bg: #f0f0f0;
+            --theme-light-text: #000;
+            --theme-dark-bg: #0d1117;
+            --theme-dark-text: #e1e4e8;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-light);
+            background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end)), url('path-to-your-background-image.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            box-sizing: border-box;
+            cursor: url('path-to-your-custom-cursor.png'), auto;
+            transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+            background: var(--theme-dark-bg);
+            color: var(--theme-dark-text);
+            border-radius: var(--border-radius);
+            box-shadow: 0 8px 16px var(--shadow-dark);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-shadow: 0 2px 8px rgba(255, 255, 255, 0.5);
+            transition: color var(--transition-speed) ease-in-out;
+        }
+
+        h1:hover {
+            color: var(--secondary-color);
+        }
+
+        p.intro {
+            font-size: 1.125em;
+            color: #b0b0b0;
+            margin-bottom: 30px;
+            line-height: 1.5;
+            animation: fadeIn 1s ease-out 0.5s;
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .payment-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: 0 16px 40px var(--shadow-dark);
+            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease, background var(--transition-speed) ease;
+            text-align: center;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transform: scale(var(--scale-down));
+            opacity: 0.9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .payment-card:hover {
+            transform: scale(var(--scale-up));
+            box-shadow: 0 24px 60px var(--shadow-dark);
+            background: var(--card-hover-bg);
+            opacity: 1;
+        }
+
+        .payment-card i {
+            font-size: 60px;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            transition: font-size var(--transition-speed) ease, color var(--transition-speed) ease;
+        }
+
+        .payment-card:hover i {
+            font-size: 70px;
+            color: var(--secondary-color);
+        }
+
+        .payment-card p {
+            font-size: 1.125em;
+            color: var(--text-light);
+            margin: 0;
+            font-weight: 600;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .payment-card .details {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--details-bg);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            color: var(--text-light);
+            font-size: 1em;
+            box-shadow: 0 8px 20px var(--shadow-dark);
+            opacity: 0;
+            transform: translateY(100%);
+            transition: opacity var(--transition-speed) ease, transform var(--transition-speed) ease;
+        }
+
+        .payment-card:hover .details {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .payment-card .details::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border: 10px solid transparent;
+            border-bottom: 10px solid var(--details-bg);
+        }
+
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--notification-bg);
+            color: var(--notification-text);
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 8px 15px var(--shadow-dark);
+            opacity: 0;
+            transition: opacity var(--transition-speed) ease;
+            z-index: 1000;
+            font-size: 1em;
+            display: none;
+        }
+
+        .notification.show {
+            display: block;
+            opacity: 1;
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: #fff;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            box-shadow: 0 8px 15px var(--shadow-dark);
+            transition: background var(--transition-speed) ease, transform var(--transition-speed) ease, opacity var(--transition-speed) ease;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .scroll-to-top.show {
+            opacity: 1;
+        }
+
+        .scroll-to-top:hover {
+            background: var(--secondary-color);
+            transform: scale(1.2);
+        }
+
+        /* Меню */
+        .menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .menu-button {
+            background: var(--primary-color);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px var(--shadow-dark);
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .menu-button:hover {
+            background: var(--secondary-color);
+            transform: scale(1.1);
+        }
+
+        .menu-content {
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background: rgba(30, 34, 39, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 10px 30px var(--shadow-dark);
+            width: 200px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .menu-content.active {
+            max-height: 300px;
+            opacity: 1;
+        }
+
+        .menu-content a {
+            display: block;
+            padding: 10px 20px;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .menu-content a:hover {
+            background: var(--secondary-color);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Контактная информация Wenci</h1>
+        <p class="intro">Ниже вы найдете способы оплаты, с помощью которых вы можете поддержать проект или сделать пожертвование. Если у вас возникли вопросы, не стесняйтесь связаться со мной.</p>
+        <div class="payment-methods">
+            <div class="payment-card">
+                <i class="fab fa-bitcoin"></i>
+                <p>Bitcoin</p>
+                <div class="details">Адрес кошелька: <span class="address">В ДОРОБОТКЕ</span></div>
+            </div>
+            <div class="payment-card">
+                <i class="fab fa-ethereum"></i>
+                <p>Ethereum</p>
+                <div class="details">Адрес кошелька: <span class="address">В ДОРОБОТКЕ</span></div>
+            </div>
+            <div class="payment-card">
+                <i class="fab fa-paypal"></i>
+                <p>PayPal</p>
+                <div class="details">Email: <span class="address">В ДОРОБОТКЕ</span></div>
+            </div>
+            <div class="payment-card">
+                <i class="fab fa-cc-visa"></i>
+                <p>Visa</p>
+                <div class="details">Номер карты: <span class="address">В ДОРОБОТКЕ</span></div>
+            </div>
+            <div class="payment-card">
+                <i class="fab fa-cc-mastercard"></i>
+                <p>Mastercard</p>
+                <div class="details">Номер карты: <span class="address">В ДОРОБОТКЕ</span></div>
+            </div>
+            <div class="payment-card">
+                <i class="fab fa-litecoin"></i>
+                <p>Litecoin</p>
+                <div class="details">Адрес кошелька: <span class="address">В ДОРОБОТКЕ</span></div>
+            </div>
+            <div class="payment-card">
+                <i class="fab fa-ripple"></i>
+                <p>Ripple</p>
+                <div class="details">Адрес кошелька: <span class="address">В ДОРОБОТКЕj</span></div>
+            </div>
+            <div class="payment-card">
+                <i class="fas fa-dollar-sign"></i>
+                <p>Tether</p>
+                <div class="details">Адрес кошелька: <span class="address">В ДОРОБОТКЕ</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="notification" id="notification"></div>
+    <div class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+    <div class="menu">
+        <button class="menu-button" id="menuToggle">☰</button>
+        <div class="menu-content" id="menuContent">
+            <a href="index.html">Профиль</a>
+            <a href="about.html">Обо мне</a>
+            <a href="skill.html">Навыки</a>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.payment-card');
+            const notification = document.getElementById('notification');
+            const menuToggle = document.getElementById('menuToggle');
+            const menuContent = document.getElementById('menuContent');
+            let notificationTimeout;
+
+            cards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const address = card.querySelector('.address').textContent;
+
+                    navigator.clipboard.writeText(address).then(() => {
+                        clearTimeout(notificationTimeout);
+
+                        const paymentMethod = card.querySelector('p').textContent;
+                        notification.textContent = `Скопирован ${paymentMethod}: ${address}`;
+                        notification.classList.add('show');
+
+                        notificationTimeout = setTimeout(() => {
+                            notification.classList.remove('show');
+                        }, 3000);
+                    }).catch(err => {
+                        console.error('Ошибка копирования текста: ', err);
+                    });
+                });
+            });
+
+            const scrollToTopButton = document.getElementById('scrollToTop');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    scrollToTopButton.classList.add('show');
+                } else {
+                    scrollToTopButton.classList.remove('show');
+                }
+            });
+
+            scrollToTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // Menu toggle functionality
+            menuToggle.addEventListener('click', () => {
+                menuContent.classList.toggle('active');
+            });
+        });
+    </script>
+<!-- Cloudflare Pages Analytics --><script defer="" src="js/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;d9a36329fa564c2996afdd550f3f3768&quot;}"></script><!-- Cloudflare Pages Analytics -->
+
+</body></html>

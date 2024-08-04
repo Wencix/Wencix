@@ -1,0 +1,144 @@
+<!DOCTYPE html><html lang="ru"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Обо мне - страница Wenci. Узнайте больше о моих интересах и проектах.">
+    <meta name="keywords" content="Wen2ci, о себе, интересы, проекты">
+    <meta name="author" content="Wenci">
+    <title>Обо Мне | Wenci[BETA]</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="about.css">
+</head>
+<body>
+    <div id="loader" class="loader">
+        <iframe src="loader.html" style="border: none; width: 100%; height: 100%;"></iframe>
+    </div>
+    <div class="menu">
+        <button class="menu-button" id="menuToggle">☰</button>
+        <div class="menu-content" id="menuContent">
+            <a href="index.html">Профиль</a>
+            <a href="skill.html">Навыки</a>
+            <a href="donate.html">Донат</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Обо Мне</h1>
+        <p>Как ранее говорил я ахуенный и пыздатый ниже увидите мои пиздатые проекты</p>
+        
+        <h2>Мои Интересы</h2>
+        <ul>
+            <li>Попасть на передачу беременна в 16р</li>
+            <li>Создание ботов для Discord и других платформ для секса</li>
+            <li>Разработка веб-сайтов (HTML, CSS, JavaScript)</li>
+            <li>Оптимизация и настройка операционных систем</li>
+            <li>Выбеать бомжай</li>
+            <li>Музыка- КИШЛАК ТОП АААААААААА</li>
+        </ul>
+
+        <h2>Мои Проекты 
+            <button class="play-button" aria-label="Play/Pause music">▶️</button>
+            <div class="volume-control" aria-label="Volume control">
+                <input type="range" id="volume-slider" min="0" max="100" value="25" aria-label="Volume level" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+            </div>
+        </h2>
+        <div class="projects">
+            <div class="project-card">
+                <h3>Бот для Discord</h3>
+                <p>Разработка ботов для Discord, которые помогают в управлении сервером, автоматизируют взаимодействие и предоставляют различные функциональные возможности.</p>
+            </div>
+            <div class="project-card">
+                <h3>Веб-сайты на HTML, CSS и JavaScript</h3>
+                <p>Создание интерактивных и динамических веб-сайтов, включая как простые лендинги, так и сложные веб-приложения.</p>
+            </div>
+            <div class="project-card">
+                <h3>Твики для Windows</h3>
+                <p>Разработка скриптов и утилит для улучшения производительности Windows и настройки системы под специфические нужды пользователей.</p>
+            </div>
+            <div class="project-card">
+                <h3>Игровые Проекты</h3>
+                <p>Работа над созданием и тестированием игр, использование различных движков и инструментов для реализации увлекательного игрового процесса и дизайна.</p>
+            </div>
+        </div>
+
+        <h2>Пиздатые исполнителиа</h2>
+        <p>Я обожаю сосать вот несколько исполнителей, которые мне особенно нравятся:</p>
+        <ul>
+            <li>Deftones</li>
+            <li>Radiohead</li>
+            <li>Porcupine Tree</li>
+            <li>Pink Floyd</li>
+            <li>Bonobo</li>
+            <li>Lil Peep</li>
+        </ul>
+
+        <div class="social-icons">
+            <a href="https://github.com/Wencix" target="_blank" title="GitHub">
+                <img src="images/github.png" alt="GitHub">
+            </a>
+            <a href="https://discord.com/users/yourprofile" target="_blank" title="Discord">
+                <img src="images/discord-logo.png" alt="Discord">
+            </a>
+            <a href="https://t.me/Wencix" target="_blank" title="Telegram">
+                <img src="images/telegram-app.png" alt="Telegram">
+            </a>
+            <a href="https://open.spotify.com/playlist/4w4fcYqHT0UeCVnKwkixND?si=ffcec70f364841f5" target="_blank" title="Spotify">
+                <img src="images/spotify.png" alt="Spotify">
+            </a>
+            <a href="https://www.instagram.com/wn_wenci/" target="_blank" title="Instagram">
+                <img src="images/instagram-new.png" alt="Instagram">
+            </a>
+        </div>
+    </div>
+
+    <audio id="background-music" src="media/github.mp3" preload="auto"></audio>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const playButton = document.querySelector('.play-button');
+            const volumeControl = document.getElementById('volume-slider');
+            const audio = document.getElementById('background-music');
+            const loader = document.getElementById('loader');
+            const menuToggle = document.getElementById('menuToggle');
+            const menuContent = document.getElementById('menuContent');
+        
+            let isPlaying = false;
+        
+            playButton.addEventListener('click', () => {
+                if (isPlaying) {
+                    audio.pause();
+                    playButton.textContent = '▶️';
+                } else {
+                    audio.volume = volumeControl.value / 100;
+                    audio.play();
+                    playButton.textContent = '⏸️';
+                }
+                isPlaying = !isPlaying;
+            });
+        
+            volumeControl.addEventListener('input', () => {
+                if (audio) {
+                    audio.volume = volumeControl.value / 100;
+                    volumeControl.setAttribute('aria-valuenow', volumeControl.value);
+                }
+            });
+        
+            menuToggle.addEventListener('click', () => {
+                menuContent.classList.toggle('active');
+            });
+        
+            window.addEventListener('load', () => {
+                loader.classList.add('hidden');
+                setTimeout(() => loader.remove(), 300);
+            });
+        
+            // Close menu if clicked outside
+            document.addEventListener('click', (event) => {
+                if (!menuToggle.contains(event.target) && !menuContent.contains(event.target)) {
+                    menuContent.classList.remove('active');
+                }
+            });
+        });
+    </script>
+<!-- Cloudflare Pages Analytics --><script defer="" src="js/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;d9a36329fa564c2996afdd550f3f3768&quot;}"></script><!-- Cloudflare Pages Analytics -->
+
+</body></html>

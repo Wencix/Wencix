@@ -1,0 +1,60 @@
+<!DOCTYPE html><html lang="ru"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Индикатор загрузки</title>
+    <style>
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--bg-dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            font-family: Arial, sans-serif;
+        }
+
+
+        .loader {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .spinner {
+            border: 8px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            border-top: 8px solid var(--primary-color);
+            width: 100px;
+            height: 100px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+
+        :root {
+            --bg-dark: #0d1117;
+            --primary-color: #58a6ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="loader">
+        <div class="spinner"></div>
+    </div>
+<!-- Cloudflare Pages Analytics --><script defer="" src="js/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;d9a36329fa564c2996afdd550f3f3768&quot;}"></script><!-- Cloudflare Pages Analytics -->
+
+</body></html>

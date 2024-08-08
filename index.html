@@ -1,8 +1,10 @@
-<!DOCTYPE html><html lang="ru"><head>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Визитная карточка Wenci. Программирование на Python, Lua и CSS. Связь через GitHub, Discord, Telegram, Spotify и Instagram.">
-    <meta name="keywords" content="визитка, Wenci, программирование, Python, Lua, CSS, GitHub, Discord, Telegram, Spotify, Instagram">
+    <meta name="description" content="Визитная карточка Wenci. Программирование на Python, Lua и CSS. Связь через GitHub, Discord, Telegram и Spotify.">
+    <meta name="keywords" content="визитка, Wenci, программирование, Python, Lua, CSS, GitHub, Discord, Telegram, Spotify">
     <meta name="author" content="Wenci">
     <title>Визитная Карточка | Wenci</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
@@ -37,27 +39,26 @@
         }
 
         .background {
-         position: absolute;
-         top: 0;
-         left: 0;
-         width: 100%;
-         height: 100%;
-         z-index: -2;
-         font-size: 16px;
-         color: rgba(100, 200, 100, 0.5);
-         white-space: pre;
-         overflow: hidden;
-         animation: codeScroll 30s linear infinite;
-         padding: 20px;
-         opacity: 0.6;
-         transform: translateY(100%);
-       }
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            font-size: 16px;
+            color: rgba(100, 200, 100, 0.5);
+            white-space: pre;
+            overflow: hidden;
+            animation: codeScroll 30s linear infinite;
+            padding: 20px;
+            opacity: 0.6;
+            transform: translateY(100%);
+        }
 
         @keyframes codeScroll {
             0% { transform: translateY(100%); }
             100% { transform: translateY(-100%); }
         }
-
 
         .card {
             background: rgba(30, 34, 39, 0.9);
@@ -329,7 +330,6 @@
         </div>
     </div>
 
-
     <div class="menu">
         <button class="menu-button" id="menuToggle">☰</button>
         <div class="menu-content" id="menuContent">
@@ -356,4 +356,5 @@
         });
     </script>
 
-</body></html>
+</body>
+</html>

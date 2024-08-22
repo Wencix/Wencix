@@ -143,7 +143,7 @@
             flex-direction: column;
             align-items: center;
             gap: 10px;
-            width: 50px;
+            width: 50px; /* Немного увеличенный размер контейнера */
             height: auto;
             z-index: 1000;
         }
@@ -152,36 +152,42 @@
             -webkit-appearance: none;
             appearance: none;
             width: 100%;
-            height: 5px;
+            height: 6px; /* Увеличенная высота полосы */
             background: var(--bg-dark-alt);
             border-radius: 5px;
             cursor: pointer;
+            box-shadow: inset 0 2px 4px var(--shadow-light); /* Легкая внутренняя тень */
         }
         
         .volume-control input::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
-            width: 24px;
-            height: 24px;
-            background: var(--secondary-color);
+            width: 24px; /* Увеличенный размер ползунка */
+            height: 24px; /* Увеличенный размер ползунка */
+            background: var(--primary-color); /* Цвет ползунка */
             border-radius: 50%;
-            box-shadow: 0 0 6px var(--shadow-dark);
+            box-shadow: 0 0 6px var(--shadow-dark); /* Увеличенная тень */
             cursor: pointer;
+            transition: background 0.3s ease; /* Плавное изменение цвета */
         }
         
         .volume-control input::-moz-range-thumb {
-            width: 24px;
-            height: 24px;
-            background: var(--secondary-color);
+            width: 24px; /* Увеличенный размер ползунка */
+            height: 24px; /* Увеличенный размер ползунка */
+            background: var(--primary-color); /* Цвет ползунка */
             border-radius: 50%;
-            box-shadow: 0 0 6px var(--shadow-dark);
+            box-shadow: 0 0 6px var(--shadow-dark); /* Увеличенная тень */
             cursor: pointer;
+            transition: background 0.3s ease; /* Плавное изменение цвета */
         }
         
         .volume-control input:focus::-webkit-slider-thumb {
-            background: var(--tertiary-color);
-            box-shadow: 0 0 8px var(--shadow-dark);
+            background: var(--tertiary-color); /* Цвет ползунка при фокусе */
+            box-shadow: 0 0 8px var(--shadow-dark); /* Увеличенная тень при фокусе */
         }
+
+
+
 
 
         p {

